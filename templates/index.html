@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Todo App</title>
-	<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='main.css')}}">
+	<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='style.css')}}">
 
 </head>
 <body>
@@ -18,8 +18,10 @@
 		<h2>Incomplete Items</h2>
 		<ul>
 			{% for task in not_done %}
-			<li style="font-size: 30pt" class='mark'>{{ task.task }} <a href="{{ url_for('complete', id=task.id) }}">Mark As Complete</a></li>
+			<li style="font-size: 30pt" class='mark'>{{ task.task }}</li>
                 <a href="{{ url_for('delete', id=task.id) }}">Delete</a></li>
+                <a href="{{ url_for('complete', id=task.id) }}">Mark As Complete</a>
+                <a href="{{ url_for('edit', id=task.id) }}">Edit</a>
 
             {% endfor %}
 		</ul>

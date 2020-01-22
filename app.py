@@ -35,11 +35,11 @@ def add():
     return redirect(url_for('index'))
 
 
-@app.route('/update/<id>', methods=['PUT'])
+@app.route('/update/<id>', methods=['POST'])
 def update(id):
     task = Task.query.filter_by(id=int(id)).first()
-    task.task = request.form['todoitemm']
-    db.session.add(task )
+    task.task = request.form['todoitem']
+    db.session.add(task)
     db.session.commit()
     db.session.close()
 
@@ -54,6 +54,14 @@ def delete(id):
     db.session.close()
 
     return redirect(url_for('index'))
+
+
+@app.route('/edit/<id>')
+def edit(id):
+    task = Task.query.filter_by(id=int(id)).first()
+
+    return render_template('edit.html',
+                           task=task)
 
 
 @app.route('/complete/<id>')

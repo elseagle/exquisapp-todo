@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>HTML Forms</h2>
+
+<form action="{{ url_for('update', id=task.id )}}" method="post">
+  Task:<br>
+  <input type="text" name="todoitem" value="{{ task.task  }}">
+  <br>
+
+  <input type="submit" value="Submit">
+</form>
+</body>
+</html>
