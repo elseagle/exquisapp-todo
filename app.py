@@ -3,9 +3,10 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 
 app = Flask(__name__)
-db = SQLAlchemy()
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///exquisapp'
+
+db = SQLAlchemy(app)
 migrate = Migrate(app, db)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////exquisapp-todo.db'
 
 
 class Task(db.Model):
@@ -26,18 +27,19 @@ def index():
 
 @app.route('/add', methods=['POST'])
 def add():
-    todo = Task(text=request.form['todoitem'], complete=False)
+    todo = Task(task=request.form['todoitem'], done=False)
     db.session.add(todo)
     db.session.commit()
+    return redirect(url_for('index'))
 
 
-@app.route('/update/<:id>', methods=['PUT'])
+@app.route('/update/<id>', methods=['PUT'])
 def update(id):
     task = Task.query.filter_by(id=int(id)).first()
     task.task = request.form['todoitemm']
-    db.session.add(todo)
+    db.session.add(task )
     db.session.commit()
-    return redirect
+    return redirect(url_for('index'))
 
 
 @app.route('/complete/<id>')
