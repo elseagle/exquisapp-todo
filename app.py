@@ -31,18 +31,25 @@ def add():
     db.session.commit()
 
 
+@app.route('/update/<:id>', methods=['PUT'])
+def update(id):
+    task = Task.query.filter_by(id=int(id)).first()
+    task.task = request.form['todoitemm']
+    db.session.add(todo)
+    db.session.commit()
+    return redirect
+
+
 @app.route('/complete/<id>')
 def complete(id):
     task = Task.query.filter_by(id=int(id)).first()
     task.done = True
     db.session.commit()
-    ###### Makes to stay on the same home page######
 
     return redirect(url_for('index'))
 
 
-if __name__ == '__main__':
-    app.run(debug=True)
+db.create_all()
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)
