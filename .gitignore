@@ -3,6 +3,7 @@
 .idea/
 .env
 exquisapp-todo/
+exquisapp
 venv/
 __pycache__/
 fidelity-venv/

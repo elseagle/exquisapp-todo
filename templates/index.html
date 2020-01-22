@@ -8,14 +8,14 @@
 </head>
 <body>
 	<h1>Todo List</h1>
-	<div>Add a new todo item:
+	<div>Add a new todo task:
 		<form action="{{ url_for('add') }}" method="POST">
 			<input type="text" name="todoitem">
 			<input type="submit" value="Add Item" class="button">
 		</form>
 	</div>
 	<div>
-		<h2>Incomplete Items</h2>
+		<h2>Incomplete Tasks</h2>
 		<ul>
 			{% for task in not_done %}
 			<li style="font-size: 30pt" class='mark'>{{ task.task }}</li>
@@ -25,7 +25,7 @@
 
             {% endfor %}
 		</ul>
-		<h2>Completed Items</h2>
+		<h2>Completed Tasks</h2>
 		<ul>
 			{% for task in done %}
 			<li style="font-size: 30pt">{{ task.task }}</li>
