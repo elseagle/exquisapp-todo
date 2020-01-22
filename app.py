@@ -30,6 +30,8 @@ def add():
     todo = Task(task=request.form['todoitem'], done=False)
     db.session.add(todo)
     db.session.commit()
+    db.session.close()
+
     return redirect(url_for('index'))
 
 
@@ -39,6 +41,18 @@ def update(id):
     task.task = request.form['todoitemm']
     db.session.add(task )
     db.session.commit()
+    db.session.close()
+
+    return redirect(url_for('index'))
+
+
+@app.route('/delete/<id>')
+def delete(id):
+    Task.query.filter_by(id=int(id)).delete()
+    # task.delete()
+    db.session.commit()
+    db.session.close()
+
     return redirect(url_for('index'))
 
 

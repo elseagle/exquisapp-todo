@@ -1,9 +1,9 @@
 body{
-	background:black;
-	color:red;
+	background:white;
+	color:white;
 	margin-top: 5px;
 }
 .button{
-	color:green;
+	color:lightblue;
 }
-.mark{font-size: 10px;}
+.mark{font-size: 5px;}

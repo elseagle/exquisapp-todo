@@ -18,13 +18,15 @@
 		<h2>Incomplete Items</h2>
 		<ul>
 			{% for task in not_done %}
-			<li style="font-size: 30pt" class='mark'>{{ task.text }} <a href="{{ url_for('complete', id=task.id) }}">Mark As Complete</a></li>
-			{% endfor %}
+			<li style="font-size: 30pt" class='mark'>{{ task.task }} <a href="{{ url_for('complete', id=task.id) }}">Mark As Complete</a></li>
+                <a href="{{ url_for('delete', id=task.id) }}">Delete</a></li>
+
+            {% endfor %}
 		</ul>
 		<h2>Completed Items</h2>
 		<ul>
 			{% for task in done %}
-			<li style="font-size: 30pt">{{ task.text }}</li>
+			<li style="font-size: 30pt">{{ task.task }}</li>
 			{% endfor %}
 		</ul>
 	</div>
